@@ -1,0 +1,50 @@
+Shallow copies
+DT.bak <- copy(DT)
+
+.I
+.SD
+.N
+.BY
+
+browsing
+{.SD; browser();}
+
+Lazy Evaluation
+
+
+Selecting
+Joining
+  Left Join
+  Right Join
+  Outter Join
+  Inner Join
+
+by has certain expectations
+  eg  
+    by=setdiff(x, names(DT))
+  is no good
+  wrap it in c()
+    by=c(setdiff(x, names(DT)))
+
+by     # Can even be an expression!  
+    DT[, length(ID), by=list(Value > 50)]
+    DT[, length(ID), by=list('Value > 50'=Value > 50)]
+
+    # CAUTION! Watch out for a pitfall if using an expression on a column
+    #          If the list is a "raw" expression of the column
+    DT[, length(Value), by=list(Value > 50)]
+    DT[, length(Value), by=list(z=Value > 50)]
+    DT[, length(Value), by=list(c(Value) > 50)]
+    DT[, {.SD; sum(Value)}, by=list(Value > 50), .SDcols=c("Value")]
+
+============
+
+
+1.12 What is the difference between X[Y] and merge(X,Y)?
+  
+  X[Y] is a join, looking up X’s rows using Y (or Y’s key if it has one) as an index.
+  Y[X] is a join, looking up Y’s rows using X (or X’s key if it has one) as an index.
+  merge(X,Y)1 does both ways at the same time. The number of rows of X[Y] and Y[X] usually differ; whereas the number of rows returned by merge(X,Y) and merge(Y,X) is the same.
+  
+  BUT that misses the main point. Most tasks require something to be done on the data after a 
+  join or merge. Why merge all the columns of data, only to use a small subset of them afterwards? You may suggest merge(X[,ColsNeeded1],Y[,ColsNeeded2]), but that takes copies of the sub- sets of data, and it requires the programmer to work out which columns are needed. X[Y,j] in data.table does all that in one step for you. When you write X[Y,sum(foo*bar)], data.table automatically inspects the j expression to see which columns it uses. It will only subset those columns only; the others are ignored. Memory is only created for the columns the j uses, and Y columns enjoy standard R recycling rules within the context of each group. Let’s say foo is in X, and bar is in Y (along with 20 other columns in Y). Isn’t X[Y,sum(foo*bar)] quicker to program and quicker to run than a merge followed by a subset?
