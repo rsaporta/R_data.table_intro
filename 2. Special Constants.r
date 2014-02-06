@@ -14,3 +14,14 @@ sdcols
 DT[  DT[<filter>, .I, by=..]$V1  ]
 
 
+## Set by reference
+setattr()
+setnames()
+setcolorder()
+setkey()
+setkeyv()
+
+## additional options in `[.data.table`
+allow.cartesian=TRUE
+mult
+roll

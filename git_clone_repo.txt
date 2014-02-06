@@ -1,0 +1,4 @@
+cd ~/Wherever/
+git clone https://github.com/rsaporta/R_data.table_intro.git
+cd R_data.table_intro
+
