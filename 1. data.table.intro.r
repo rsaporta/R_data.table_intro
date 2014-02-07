@@ -1,23 +1,10 @@
-LLL <- do.call(paste0, replicate(3, LETTERS, simplify=FALSE))
 
-N.IDs <- 200
-IDs <- sample(4e7:9e7, N.IDs, FALSE)
+      Introduction to the data.table package
+      -------------------------------------
 
-LLL <- paste0(LETTERS, LETTERS, LETTERS)
 
-=========================================
-
-#             "CEATE A data.table"
-# 
-# N.rows <- 20
-# 
-# set.seed(1)
-# DT <- data.table(ID    = sample(IDs, N.rows, TRUE)
-#                , Group = sample(LLL, N.rows, TRUE)
-#                , Value = round(rnorm(N.rows), 4)
-#                )
-# 
-# setkey(DT, ID, Group)
+install.packages("data.table", repos="http://cran.rstudio.com/")
+library(data.table)
 
 =========================================
 
@@ -68,7 +55,6 @@ key(DT.with.no.key)
 tables()
 
 
-Create a small data.table using ...
 
 =========================================
  
