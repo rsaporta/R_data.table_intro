@@ -1,6 +1,10 @@
 On stackoverflow today:
 http://stackoverflow.com/questions/21611040/reshape-in-r-without-aggregation-for-example-mturk-response-strings
 
+(note the below applies for data.table 1.8.10.  
+ The dev version 1.8.11 has even quicker reshape
+ capabilities which will be part of release 1.8.12)
+ 
 ## DATA: 
 mturk <- data.table(structure(list(AssignmentStatus = c("Approved", "Approved", "Approved","Submitted", "Approved", "Approved"), Input.id = c(134231L, 134231L,134231L, 134812L, 134812L, 134812L), Input.State = c("NY", "NY","NY", "CA", "CA", "CA"), Answer.Q1thing = c("Myguess", "Myguess","BadGuess", "Another", "Another", "Another")), .Names = c("AssignmentStatus","Input.id", "Input.State", "Answer.Q1thing"), class = c("data.table","data.frame"), row.names = c(NA, -6L)))
 
