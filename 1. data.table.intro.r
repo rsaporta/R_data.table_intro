@@ -1,4 +1,3 @@
-
       Introduction to the data.table package
       -------------------------------------
 
@@ -112,7 +111,8 @@ DT[, median(Value), by="ID,Gender"]
     ## Spaces will give you an error, or unexpected results
     ##    (it will be considered part of the column name)
     ## I use this method when working interactively
-    ##   but generally avoid in scripts & functions.
+    ##   while in scripts and functions I tend to use 
+    ##   one of the other two methods. Simply personal preference.
 
     by=c("ID", "Gender")
     ## A vector of strings of strings
@@ -130,7 +130,7 @@ DT[, median(Value), by="ID,Gender"]
     ## If you use a NAMED LIST, will rename the by-columns
     DT[, sum(Value), by=list(Name=ID, Gender)]
 
-# The 'by=...' argument has some intricacies and pitfalls that we will cover later
+# The 'by=...' argument has some intricacies to be aware of that we will cover later
 
 =========================================
 
@@ -221,8 +221,9 @@ DT[, using.cols, with=FALSE]
 ## Generally though, stick to list()
 DT[, list(ID, Gender)]
 
-## If 'j=..' evaluates to _NAMED_ list, the names will be the names of the columns
-##   otherwise, they will be named V1, V2, etc... (contrast with X1, X2, .. in data.frame)
+## If 'j=..' evaluates to _NAMED_ list
+##   then: the names of the list will be the names of the output columns
+##   otherwise: the output columns will be named V1, V2, etc... (contrast with X1, X2, .. in data.frame)
 DT[, list(mean(Value))]
 DT[, list(Value=mean(Value))]
 
